@@ -1,29 +1,37 @@
 var userAgentMatch = navigator.userAgent.match(/Firefox\/(.*)$/),
-    firefoxVersion;
+    firefoxVersion,
+    blinkVisible = true,
+    blinkStart,
+    blinkNext;
 
 if (userAgentMatch && userAgentMatch.length > 1) {
     firefoxVersion = userAgentMatch[1];
 }
 
 if (userAgentMatch && userAgentMatch.length > 1 && firefoxVersion >= 23) {
-    function blinkTags() {
-        var visible = true;
+    var blinkTags = function () {
+        if(!blinkStart) {
+            blinkStart = new Date().getTime();
+            blinkNext = blinkStart;
+        }
 
-        setInterval(function() {
-            var blinks = document.getElementsByTagName('blink');
+        blinkNext += 500;        
 
-            if (visible === false) {
-                for (var i = 0; i < blinks.length; i++) {
-                    blinks[i].style.visibility = 'visible';
-                }
-                visible = true;
-            } else {
-                for (var i = 0; i < blinks.length; i++) {
-                    blinks[i].style.visibility = 'hidden';
-                }
-                visible = false;
+        var blinkElements = document.getElementsByTagName('blink');
+
+        if (blinkVisible === false) {
+            for (var i = 0; i < blinkElements.length; i++) {
+                blinkElements[i].style.visibility = 'visible';
             }
-        }, 500);
-    }
+            blinkVisible = true;
+        } else {
+            for (var i = 0; i < blinkElements.length; i++) {
+                blinkElements[i].style.visibility = 'hidden';
+            }
+            blinkVisible = false;
+        }
+        setTimeout(blinkTags, blinkNext - new Date().getTime());
+    };
+
     window.addEventListener('load',blinkTags,false);
 }
