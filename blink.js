@@ -25,8 +25,5 @@ if (userAgentMatch && userAgentMatch.length > 1 && firefoxVersion >= 23) {
             }
         }, 500);
     }
-
-    window.onload = function() {
-        blinkTags();
-    };
+    window.addEventListener('load',blinkTags,false);
 }
