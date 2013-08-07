@@ -11,6 +11,7 @@ Currently, this fix only applies to FireFox
 
 Todo
 ----
+* Cache elements and reload on DOM change
 * Add support for .blink()
 * Add support for text-decoration: blink;
-* Add support to other browsers that killed <blink>
+* Add support to other browsers that are trying to kill <blink>
