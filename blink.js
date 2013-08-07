@@ -27,7 +27,6 @@ if (userAgentMatch && userAgentMatch.length > 1 && firefoxVersion >= 23) {
     }
 
     window.onload = function() {
-    	alert(navigator.userAgent);
         blinkTags();
     };
 }
