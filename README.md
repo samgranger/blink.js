@@ -9,7 +9,7 @@ This little script brings <blink> back to life, disco disco, party!!
 
 Currently, this fix only applies to FireFox
 
-TODO
+Todo
 ----
 * Add support for .blink()
 * Add support for text-decoration: blink;
