@@ -1,8 +1,6 @@
 var userAgentMatch = navigator.userAgent.match(/Firefox\/(.*)$/),
     firefoxVersion,
-    blinkVisible = true,
-    blinkStart,
-    blinkNext;
+    blinkVisible = true;
 
 if (userAgentMatch && userAgentMatch.length > 1) {
     firefoxVersion = userAgentMatch[1];
@@ -10,13 +8,6 @@ if (userAgentMatch && userAgentMatch.length > 1) {
 
 if (userAgentMatch && userAgentMatch.length > 1 && firefoxVersion >= 23) {
     var blinkTags = function () {
-        if(!blinkStart) {
-            blinkStart = new Date().getTime();
-            blinkNext = blinkStart;
-        }
-
-        blinkNext += 500;        
-
         var blinkElements = document.getElementsByTagName('blink');
 
         if (blinkVisible === false) {
@@ -30,7 +21,7 @@ if (userAgentMatch && userAgentMatch.length > 1 && firefoxVersion >= 23) {
             }
             blinkVisible = false;
         }
-        setTimeout(blinkTags, blinkNext - new Date().getTime());
+        setTimeout(blinkTags, 500);
     };
 
     window.addEventListener('load',blinkTags,false);
