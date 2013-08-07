@@ -12,7 +12,7 @@ if (userAgentMatch && userAgentMatch.length > 1 && firefoxVersion >= 23) {
         setInterval(function() {
             var blinks = document.getElementsByTagName('blink');
 
-            if (visible == false) {
+            if (visible === false) {
                 for (var i = 0; i < blinks.length; i++) {
                     blinks[i].style.visibility = 'visible';
                 }
