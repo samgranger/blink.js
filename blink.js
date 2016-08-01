@@ -1,22 +1,14 @@
-var userAgentMatch = navigator.userAgent.match(/Firefox\/(.*)$/),
-    firefoxVersion,
-    blinkVisible = true;
+var blinkVisible = true;
 
-if (userAgentMatch && userAgentMatch.length > 1) {
-    firefoxVersion = userAgentMatch[1];
-}
+var blinkTags = function () {
+    var blinkElements = document.getElementsByTagName('blink');
 
-if (userAgentMatch && userAgentMatch.length > 1 && firefoxVersion >= 23) {
-    var blinkTags = function () {
-        var blinkElements = document.getElementsByTagName('blink');
+    for (var i = 0; i < blinkElements.length; i++) {
+        blinkElements[i].style.visibility = blinkVisible ? 'visible' : 'hidden';
+    }
+    blinkVisible = !blinkVisible;
 
-        for (var i = 0; i < blinkElements.length; i++) {
-            blinkElements[i].style.visibility = blinkVisible ? 'visible' : 'hidden';
-        }
-        blinkVisible = !blinkVisible;
+    setTimeout(blinkTags, 500);
+};
 
-        setTimeout(blinkTags, 500);
-    };
-
-    window.addEventListener('load',blinkTags,false);
-}
+window.addEventListener('load',blinkTags,false);
